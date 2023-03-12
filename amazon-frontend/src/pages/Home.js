@@ -16,7 +16,7 @@ const Home = () => {
     }, [dispatch])
 
     const productList = useSelector( state => state.productList);
-    const {loading,error,products} = productList;
+    const {products} = productList;
 
     
     const settings = {

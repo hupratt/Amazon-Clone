@@ -16,7 +16,7 @@ export const listProducts = () => async (dispatch) =>{
 
     try{
         const {data} = await axios.get("/api/products");
-        const count = data.length;
+        // const count = data.length;
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data

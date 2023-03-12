@@ -9,12 +9,12 @@ const PriceCheckBox = (props) => {
 
 
 
-    const [Checked, setChecked] = useState([]);
+    // const [Checked, setChecked] = useState([]);
 
     const handleToggle = (value) => {
 
         setValue(value);
-        setChecked(value);
+        // setChecked(value);
         props.handleFilters(value);
 
     }

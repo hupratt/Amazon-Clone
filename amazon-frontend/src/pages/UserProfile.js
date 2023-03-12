@@ -21,8 +21,7 @@ const UserProfile = () => {
     const {loading,error,user} = userDetails;
     const {
         success: successUpdate,
-        error: errorUpdate,
-        loading: loadingUpdate
+        error: errorUpdate
     } = userUpdateProfile;
 
     const dispatch = useDispatch();
@@ -45,7 +44,7 @@ const UserProfile = () => {
     const updateDetails = (e) =>{
         e.preventDefault();
 
-        if(password != confirmpassword){
+        if(password !== confirmpassword){
             alert('Password does not match.')
         }
         else{

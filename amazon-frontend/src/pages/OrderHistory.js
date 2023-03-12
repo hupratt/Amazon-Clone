@@ -37,7 +37,7 @@ const OrderHistory = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {console.log(orders)}
+                        {/* {console.log(orders)} */}
                         {orders.map((order)=>(
                             <tr key={order._id}>
                                 <td>{order._id}</td>

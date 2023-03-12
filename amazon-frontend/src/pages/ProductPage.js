@@ -16,7 +16,7 @@ const ProductPage = (props) => {
     const productDetails = useSelector((state) => state.productDetails);
     const {loading,error,product} = productDetails;
 
-    console.log(product);
+    // console.log(product);
 
 
     const [qty, setQty] = useState(1);

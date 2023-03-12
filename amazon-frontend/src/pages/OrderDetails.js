@@ -28,7 +28,7 @@ const OrderDetails = (props) => {
             const { data } = await axios.get('/api/config/paypal');
             const script = document.createElement('script');
 
-            console.log(data);
+            // console.log(data);
             script.type = "text/javascript";
             script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
             script.async = true;
@@ -38,7 +38,7 @@ const OrderDetails = (props) => {
             document.body.appendChild(script);
         };
 
-        if(!order || successPay || (order && order._id != orderID)){
+        if(!order || successPay || (order && order._id !== orderID)){
             dispatch({
                 type: ORDER_PAY_RESET
             })
@@ -55,7 +55,7 @@ const OrderDetails = (props) => {
             }
         }
         
-    }, [dispatch, orderID, sdkReady, order]);
+    }, [dispatch, orderID, sdkReady, order, successPay]);
 
 
     const successPaymentHandler = (paymentResult) =>{
