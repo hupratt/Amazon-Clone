@@ -10,16 +10,17 @@ const ShippingAddress = (props) => {
     const {userInfo} = userSignin;
     const cart = useSelector( (state) => state.cart);
     const {shippingAddress} = cart;
-
+    console.log('=== shippingAddress ShippingAddress.js [13] ===', Object.keys(shippingAddress).length===0 );
+    
     if(!userInfo) {
         props.history.push('/signin');
     }
-
-    const [fullName, setFullName] = useState(shippingAddress.fullName);
-    const [address, setAddress] = useState(shippingAddress.address);
-    const [city, setCity] = useState(shippingAddress.city);
-    const [postalcode, setPostalCode] = useState(shippingAddress.postalcode);
-    const [country, setCountry] = useState(shippingAddress.country);
+    // grab the revious shipping address or initialize it
+    const [fullName, setFullName] = useState([shippingAddress.fullName, ""].filter(arg => arg !== undefined)[0]);
+    const [address, setAddress] = useState([shippingAddress.address, ""].filter(arg => arg !== undefined)[0]);
+    const [city, setCity] = useState([shippingAddress.city, ""].filter(arg => arg !== undefined)[0]);
+    const [postalcode, setPostalCode] = useState([shippingAddress.postalcode, 0].filter(arg => arg !== undefined)[0]);
+    const [country, setCountry] = useState([shippingAddress.country, ""].filter(arg => arg !== undefined)[0]);
 
 
     const dispatch = useDispatch();

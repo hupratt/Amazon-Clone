@@ -69,7 +69,7 @@ const Cart = (props) => {
                                                 }>
                                                 {
                                                     [...Array(item.stock).keys()].map((x)=>(
-                                                        <option value={x+1}>{x+1}</option>
+                                                        <option value={x+1} key={x+1}>{x+1}</option>
                                                     ))
                                                 }
                                                 </select>
