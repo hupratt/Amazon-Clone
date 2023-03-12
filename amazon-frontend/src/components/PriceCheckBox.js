@@ -24,7 +24,7 @@ const PriceCheckBox = (props) => {
     return (
         <div className="price-range-container">
             {props.list.map((price, index)=>(
-                <span className="price-range-checkbox">
+                <span className="price-range-checkbox" key={index}>
                     
                     <RadioGroup defaultValue="Any" name="customized-radios" value={value}
                     onChange = {() => handleToggle(price.id)}>

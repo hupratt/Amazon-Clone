@@ -10,7 +10,6 @@ const ShippingAddress = (props) => {
     const {userInfo} = userSignin;
     const cart = useSelector( (state) => state.cart);
     const {shippingAddress} = cart;
-    console.log('=== shippingAddress ShippingAddress.js [13] ===', Object.keys(shippingAddress).length===0 );
     
     if(!userInfo) {
         props.history.push('/signin');

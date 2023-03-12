@@ -84,7 +84,7 @@ const OrderDetails = (props) => {
                                 </p>
                                 {order.isDelivered?
                                 (<MessageBox variant="success">Delivered at {order.deliveredAt}</MessageBox>)
-                                : (<MessageBox variant="danger">Not Delivered.</MessageBox>)
+                                : (<MessageBox variant="warning">Not Delivered.</MessageBox>)
                                 }
                             </div>
                         </li>
@@ -97,7 +97,7 @@ const OrderDetails = (props) => {
                                 </p>
                                 {order.isPaid?
                                 (<MessageBox variant="success">Paid at {order.paidAt}</MessageBox>)
-                                : (<MessageBox variant="danger">Not Paid.</MessageBox>)
+                                : (<MessageBox variant="warning">Not Paid.</MessageBox>)
                                 }
                             </div>
                         </li>

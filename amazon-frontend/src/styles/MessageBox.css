@@ -5,18 +5,26 @@
   padding: 16px;
   border: 0.1rem solid transparent;
   border-radius: 0.5rem;
-  background-color: #ffbebe;
   margin-top: 16px;
 }
 .alert-info {
-  color: #2020a0;
-  background-color: #e0e0ff;
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
 }
 .alert-danger {
-  color: #a02020;
-  background-color:#ffbebe;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }
 .alert-success {
-  color: #109710;
-  background-color: #beff89 !important;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-warning{
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
 }
