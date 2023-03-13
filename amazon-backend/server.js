@@ -5,6 +5,11 @@ import userRouter from './routers/userRouter.js'
 import productRouter from './routers/productRouter.js'
 import dotenv from 'dotenv'
 import orderRouter from './routers/orderRouter.js'
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 // require('dotenv').config({ path: '.env' });
 
@@ -34,8 +39,12 @@ app.get('/api/config/paypal', (req,res)=>{
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 })
 
-app.get('/',(req,res)=>res.status(200).send('Hello Debjit here. It is Amazon clone project.'))
-
+if (process.env.NODE_ENV !== 'production') {
+    app.use(express.static('public/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'public/build/index.html'))
+    })
+}
 
 // Listening to  server
 

@@ -6,6 +6,7 @@
 
 # production
 /build
+/public
 
 # misc
 .env.local
