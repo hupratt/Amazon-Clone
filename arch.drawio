@@ -1,6 +1,6 @@
-<mxfile modified="2023-03-13T10:56:58.293Z" host="app.diagrams.net" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="a2ZPnih7OfvVWmMG81SN" version="21.0.6" type="github">
+<mxfile modified="2023-03-13T11:06:59.286Z" host="app.diagrams.net" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="9awbM4hj330hYd-i1MiT" version="21.0.6" type="github">
   <diagram id="Ht1M8jgEwFfnCIfOTk4-" name="Page-1">
-    <mxGraphModel dx="1687" dy="115" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="-26" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -80,11 +80,17 @@
         <mxCell id="U6mfjkMRnxooP9xAoPuW-8" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.webicons.apache;gradientColor=#DFDEDE" parent="1" vertex="1">
           <mxGeometry x="472" y="1003.5" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="JUnkcvWwJDRz5hunavrS-1" value="&lt;div style=&quot;font-size: 30px;&quot;&gt;pm2 spawns the node express app&lt;/div&gt;&lt;div style=&quot;font-size: 30px;&quot;&gt;and serves it on localhost:1313&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF6E42;labelBackgroundColor=default;" parent="1" vertex="1">
+        <mxCell id="JUnkcvWwJDRz5hunavrS-1" value="&lt;div style=&quot;font-size: 30px;&quot;&gt;pm2 spawns the node express app&lt;/div&gt;&lt;div style=&quot;font-size: 30px;&quot;&gt;and serves it on localhost:5050&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF6E42;labelBackgroundColor=default;" parent="1" vertex="1">
           <mxGeometry x="598" y="1094" width="490" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="xHvF2r1lIpU9JqNbBKkI-2" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngall.com/wp-content/uploads/13/Mongodb-Transparent.png;" vertex="1" parent="1">
+        <mxCell id="xHvF2r1lIpU9JqNbBKkI-2" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngall.com/wp-content/uploads/13/Mongodb-Transparent.png;" parent="1" vertex="1">
           <mxGeometry x="717" y="987.5" width="102.4" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="T5VWr7jSS6YKWdGjKZaH-1" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn3.iconfinder.com/data/icons/payment-method-1/64/_Paypal-39-128.png" vertex="1" parent="1">
+          <mxGeometry x="930.5" y="979.5" width="128" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="T5VWr7jSS6YKWdGjKZaH-3" value="&lt;div style=&quot;font-size: 30px;&quot;&gt;a paypal SDK is used to handle payments&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF6E42;labelBackgroundColor=default;" vertex="1" parent="1">
+          <mxGeometry x="480" y="890" width="580" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
