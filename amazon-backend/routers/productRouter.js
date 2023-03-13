@@ -1,21 +1,21 @@
 import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 import Product from '../models/productsModel.js'
-import {products} from '../products.js'
-import productdata from './productdata.js'
+import {seed} from '../seed.js'
 
 const productRouter = express.Router();
 
 productRouter.get('/', expressAsyncHandler(async (req,res) => {
-    // const products = await Product.find({});
-    const products = productdata;
+    // get all items
+    const products = await Product.find({});
     res.send(products);
 }));
 
 productRouter.get('/seed', expressAsyncHandler(async(req,res) => {
-    const createdProducts = await Product.insertMany(products);
+    const createdProducts = await Product.insertMany(seed);
     res.send( {createdProducts} );
 }))
+
 
 
 productRouter.get('/:id', expressAsyncHandler(async(req,res) => {

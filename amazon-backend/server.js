@@ -6,6 +6,7 @@ import productRouter from './routers/productRouter.js'
 import dotenv from 'dotenv'
 import orderRouter from './routers/orderRouter.js'
 
+// require('dotenv').config({ path: '.env' });
 
 dotenv.config();
 

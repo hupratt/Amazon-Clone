@@ -9,6 +9,8 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import SearchIcon from '@material-ui/icons/Search';
+import axios from "../Axios"
+
 
 const Header = (props) => {
 
@@ -40,6 +42,13 @@ const Header = (props) => {
         dispatch(signout());
     }
 
+    const triggerSeed=async()=>{
+        console.log('=== fetching Header.js [46] ===');
+        const {data} = await axios.get(`/api/products/seed/`);
+        console.log(data.createdProducts.length+ ' items created Header.js [47]', );
+        // window.location.reload();
+    }
+
     const [query, setQuery] = useState('');
 
     // console.log(userInfo)
@@ -49,7 +58,7 @@ const Header = (props) => {
             <div className="container">
                 <div className="inner-content">
                     <div className="brand">
-                        <Link to="/">Amazon Clone</Link>
+                        <Link to="/">Retro</Link>
                     </div>
 
                     <div className="search-bar">
@@ -118,7 +127,7 @@ const Header = (props) => {
                                     <ul className={ secondDropdown? 'dropdown-content show' : 'dropdown-content'}>
                                         
                                         <li>
-                                           <Link to="/productlist">Products</Link> 
+                                           <Link to='/' onClick={triggerSeed}>Seed products</Link> 
                                         </li>
                                           
                                     </ul>
