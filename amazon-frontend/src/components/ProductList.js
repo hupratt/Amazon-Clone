@@ -5,6 +5,9 @@ import Product from './Product'
 import LoadingBox from "./LoadingBox"
 import MessageBox from "./MessageBox"
 import { listProducts } from '../actions/ProdcutActions'
+import loadingBox from "../assets/loader-animation.gif"
+
+
 
 const ProductList = () => {
 
@@ -22,7 +25,7 @@ const ProductList = () => {
     return (
 
         <div className="home-product-container">
-            {loading ? <LoadingBox />
+            {loading ? <div className='img-overlay'><img src={loadingBox} /></div>
             :
             error ? <MessageBox variant="danger">{error}</MessageBox>
             :

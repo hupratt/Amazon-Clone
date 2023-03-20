@@ -5,6 +5,12 @@
     padding: 20px;
 }
 
+.img-overlay{
+    justify-content: center;
+    display: flex;
+    background-color: rgb(61, 64, 73);
+}
+
 .product-container{
     margin: 60px 26px;
     display: grid;
