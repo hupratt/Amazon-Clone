@@ -2,10 +2,9 @@ import React,{useEffect} from 'react'
 import { useSelector , useDispatch} from 'react-redux'
 import '../styles/ProductList.css'
 import Product from './Product'
-import LoadingBox from "./LoadingBox"
 import MessageBox from "./MessageBox"
 import { listProducts } from '../actions/ProdcutActions'
-import loadingBox from "../assets/loader-animation.gif"
+import loadingBox from "../assets/giphy.gif"
 
 
 
@@ -25,7 +24,7 @@ const ProductList = () => {
     return (
 
         <div className="home-product-container">
-            {loading ? <div className='img-overlay'><img src={loadingBox} /></div>
+            {loading ? <div className='img-overlay'><img src={loadingBox} alt="loading gif. Used as a placeholder temporarily" /></div>
             :
             error ? <MessageBox variant="danger">{error}</MessageBox>
             :

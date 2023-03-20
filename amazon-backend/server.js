@@ -38,9 +38,10 @@ app.use("/api/orders", orderRouter);
 app.get('/api/config/paypal', (req,res)=>{
     res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 })
+app.use("/pictures", express.static('public/pictures'))
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('public/build'))
+    app.use("/static", express.static('public/build'))
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'public/build/index.html'))
     })
