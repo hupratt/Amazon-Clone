@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "../styles/Home.css"
 import Product from '../components/Product'
-import { listProducts } from '../actions/ProdcutActions'
+import { listProducts } from '../actions/ProductActions'
 
 const Home = () => {
 

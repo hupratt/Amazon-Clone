@@ -3,7 +3,7 @@ import { useSelector , useDispatch} from 'react-redux'
 import '../styles/ProductList.css'
 import Product from './Product'
 import MessageBox from "./MessageBox"
-import { listProducts } from '../actions/ProdcutActions'
+import { listProducts } from '../actions/ProductActions'
 import loadingBox from "../assets/giphy.gif"
 
 
