@@ -1,0 +1,13 @@
+{
+  "name": "retro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:hupratt/Amazon-Clone.git",
+  "author": "hupratt <hprattdo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "(cd amazon-backend && yarn start) & (cd amazon-frontend && yarn start)",
+    "start:backend": "cd amazon-backend && yarn start",
+    "start:frontend": "cd amazon-frontend && yarn start"
+  }
+}

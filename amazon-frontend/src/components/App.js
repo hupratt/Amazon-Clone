@@ -3,6 +3,7 @@ import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from '../pages/Home';
 import ProductPage from '../pages/ProductPage'
+import UpdateProductPage from '../pages/UpdateProductPage'
 import Cart from '../pages/Cart';
 import SignIn from '../pages/SignIn'
 import Register from "../pages/Register"
@@ -36,6 +37,7 @@ const App = () => {
                 <Route exact path="/signin" component={SignIn}></Route>
                 <Route exact path="/register" component={Register}></Route>
                 <Route path="/product/:id" component={ProductPage}></Route>
+                <Route path="/edit/product/:id" component={UpdateProductPage}></Route>
                 <Route path="/shipping" component={ShippingAddress}></Route>
                 <Route path="/payment" component={PaymentMethod}></Route>
                 <Route path="/placeorder" component={PlaceOrder}></Route>
