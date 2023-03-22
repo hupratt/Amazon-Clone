@@ -41,7 +41,7 @@ app.get('/api/config/paypal', (req,res)=>{
 app.use("/pictures", express.static('public/pictures'))
 
 if (process.env.NODE_ENV === 'production') {
-    app.use("/static", express.static('public/build'))
+    app.use("/static", express.static('public/build/static'))
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'public/build/index.html'))
     })
