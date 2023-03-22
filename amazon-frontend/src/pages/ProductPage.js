@@ -16,12 +16,17 @@ const ProductPage = (props) => {
     const [qty, setQty] = useState(1);
 
     useEffect(() => {
+        
         dispatch(detailsProduct(productID));
     }, [dispatch,productID]);
 
     const addToCart = () =>{
         props.history.push(`/cart/${productID}?qty=${qty}`)
     }
+
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+
 
     return (
 
@@ -33,6 +38,12 @@ const ProductPage = (props) => {
             (
                 <div>
                     <Link to="/" className="back-res">Back to result</Link>
+
+                    {userInfo && userInfo.isAdmin && (
+                    <button><Link to={`/update/product/${productID}`}>Update Article</Link></button>
+        
+                        )}
+
                         <div className="row">
                             <div className="col-1">
                             <img className= "large" src={product.image} alt=""/>

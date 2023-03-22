@@ -11,21 +11,22 @@ const UpdateProductPage = (props) => {
 
     const dispatch = useDispatch();
     const productID = props.match.params.id;
-    
-
     const productDetails = useSelector((state) => state.productDetails);
     const {loading,error,product} = productDetails;
+
+    useEffect(() => {
+        
+        dispatch(detailsProduct(productID));
+    }, [dispatch,productID]);
 
     // console.log(product);
 
 
     const [qty, setQty] = useState(1);
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
 
-
-    useEffect(() => {
-        dispatch(detailsProduct(productID));
-    }, [dispatch,productID]);
-
+    console.log('=== here ProductPage.js [19] ===')
 
 
     return (
@@ -37,7 +38,7 @@ const UpdateProductPage = (props) => {
             :
             (
                 <div>
-                    <Link to="/" className="back-res">Back to result</Link>
+                    <button><Link to={`/product/${productID}`} className="back-res">Cancel</Link></button>
                         <div className="row">
                             <div className="col-1">
                             <img className= "large" src={product.image} alt=""/>
@@ -81,7 +82,7 @@ const UpdateProductPage = (props) => {
                                                 <div className="qty-select">
                                                     <select value={qty} onChange={(e) => setQty(e.target.value)}>
                                                         {
-                                                            [...Array(product.stock).keys()].map((x)=>(
+                                                            [...Array(50).keys()].map((x)=>(
                                                                 <option key={x+1} value={x+1}>{x+1}</option>
                                                             ))
                                                         }
