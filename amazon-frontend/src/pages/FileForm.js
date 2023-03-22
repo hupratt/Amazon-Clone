@@ -1,14 +1,24 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import { detailsProduct } from "../actions/ProductActions";
+import { useDispatch, useSelector } from "react-redux";
 
-const FileForm = () => {
+
+const FileForm = (props) => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
   const [uploadPercentage, setUploadPercentage] = useState(0);
+  const dispatch = useDispatch();
+  // const productID = props.match.params.id;
+  // useEffect(() => {
+  //   dispatch(detailsProduct(productID));
+  // }, [dispatch, productID]);
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
   };
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -17,29 +27,16 @@ const FileForm = () => {
       formData.append("image", file);
       formData.append(
         "alt",
-        `Book cover of ${book.titre} from ${book.auteur_nom}`
+        `Book cover o`
       );
-      updateBook(
-        formData,
-        setUploadPercentage,
-        `${endpoint}/bookimages/${book.pictureid}/update/`,
-        history,
-        book
-      );
+      // updateBook(
+      //   formData,
+      //   setUploadPercentage,
+      //   `${endpoint}/bookimages/${book.pictureid}/update/`,
+      //   history,
+      //   book
+      // );
     }
-    const formData = new FormData();
-    for (var key in book) {
-      if (book[key] !== undefined && book[key] !== null && key !== "picture") {
-        formData.append(key, book[key]);
-      }
-    }
-    updateBook(
-      formData,
-      setUploadPercentage,
-      `${endpoint}/books/${book.id}/update/`,
-      history,
-      book
-    );
   };
 
   return (

@@ -6,6 +6,7 @@ import "../styles/ProductPage.css";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { detailsProduct, updateArticle } from "../actions/ProductActions";
+import FileForm from "./FileForm"
 
 const UpdateProductPage = (props) => {
   const [file, setFile] = useState("");
@@ -123,43 +124,10 @@ const UpdateProductPage = (props) => {
           </form>
         </div>
       )}
-      {/* <form onSubmit={onSubmit} encType="multipart/form-data">
-        <div className="custom-file mb-4">
-          <input
-            type="file"
-            className="custom-file-input"
-            id="picture"
-            onChange={onChange}
-          />
-          <label className="custom-file-label" htmlFor="picture">
-            {filename}
-          </label>
-        </div>
-
-        <Progress percentage={uploadPercentage} />
-
-        <input
-          type="submit"
-          value="Save"
-          className="btn btn-primary btn-block mt-4"
-        />
-      </form> */}
+      <FileForm/>
     </>
   );
 };
 
-const Progress = ({ percentage }) => {
-  return (
-    <div className="progress">
-      <div
-        className="progress-bar progress-bar-striped bg-success"
-        role="progressbar"
-        style={{ width: `${percentage}%` }}
-      >
-        {percentage}%
-      </div>
-    </div>
-  );
-};
 
 export default UpdateProductPage;
