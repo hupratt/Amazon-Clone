@@ -49,8 +49,8 @@ const UpdateProductPage = (props) => {
     if(product && product.name){
       setName(product.name)
       setPrice(product.price)
-      setStock(product.setStock)
-      setDescription(product.setDescription)
+      setStock(product.stock)
+      setDescription(product.description)
     }
   }, [product]);
 
