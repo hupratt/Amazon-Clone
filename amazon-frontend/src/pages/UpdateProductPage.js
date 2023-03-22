@@ -1,113 +1,176 @@
-import React, {useEffect,useState} from 'react'
-import { Link } from 'react-router-dom';
-import {useSelector,useDispatch} from "react-redux"
-import Rating from '../components/Rating';
-import "../styles/ProductPage.css"
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { detailsProduct, updateArticle } from '../actions/ProductActions';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Rating from "../components/Rating";
+import "../styles/ProductPage.css";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { detailsProduct, updateArticle } from "../actions/ProductActions";
 
 const UpdateProductPage = (props) => {
+  const [file, setFile] = useState("");
+  const [filename, setFilename] = useState("Choose File");
+  const [uploadPercentage, setUploadPercentage] = useState(0);
 
-    const dispatch = useDispatch();
-    const productID = props.match.params.id;
-    const productDetails = useSelector((state) => state.productDetails);
-    const {loading,error,product} = productDetails;
+  const dispatch = useDispatch();
+  const productID = props.match.params.id;
+  const productDetails = useSelector((state) => state.productDetails);
+  const { loading, error, product } = productDetails;
 
-    useEffect(() => {
-        
-        dispatch(detailsProduct(productID));
-    }, [dispatch,productID]);
+  useEffect(() => {
+    dispatch(detailsProduct(productID));
+  }, [dispatch, productID]);
 
-    // console.log(product);
+  const onChange = (e) => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
+  };
+  // console.log(product);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (file !== "" && file !== undefined) {
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append(
+        "alt",
+        `Book cover of ${productDetails.titre} from ${productDetails.auteur_nom}`
+      );
+      updateArticle(
+        formData,
+        setUploadPercentage,
+        `/bookimages/${productDetails.pictureid}/update/`
+      );
+    }
+    const formData = new FormData();
+    for (var key in productDetails) {
+      if (
+        productDetails[key] !== undefined &&
+        productDetails[key] !== null &&
+        key !== "picture"
+      ) {
+        formData.append(key, productDetails[key]);
+      }
+    }
+    updateArticle(
+      formData,
+      setUploadPercentage,
+      `/books/${productDetails.id}/update/`
+    );
+  };
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState(1);
+  const [stock, setStock] = useState(1);
+  const [description, setDescription] = useState("");
 
-    const [qty, setQty] = useState(1);
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo } = userSignin;
+  return (
+    <>
+      <button>
+        <Link to={`/product/${productID}`} className="back-res">
+          Cancel
+        </Link>
+      </button>
+      {loading ? (
+        <LoadingBox />
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <div className="prod-upd-container">
+          <form className="form" onSubmit={onSubmit}>
+            <h1>Article Update Page</h1>
 
-    console.log('=== here ProductPage.js [19] ===')
+            <div className="form-ip-sec">
+              <label htmlFor="name">Product name:</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter name"
+                value={product.name}
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+            </div>
 
+            <div className="form-ip-sec">
+              <label htmlFor="email">Unit price:</label>
+              <input
+                type="number"
+                id="price"
+                placeholder="Enter a unit price"
+                value={product.price}
+                onChange={(e) => setPrice(e.target.value)}
+              ></input>
+            </div>
 
-    return (
+            <div className="form-ip-sec">
+              <label htmlFor="stock">In Stock:</label>
+              <input
+                type="number"
+                id="stock"
+                placeholder="Enter available stock"
+                value={product.stock}
+                onChange={(e) => setStock(e.target.value)}
+              ></input>
+            </div>
 
-        <div>
-            {loading ? <LoadingBox />
-            :
-            error ? <MessageBox variant="danger">{error}</MessageBox>
-            :
-            (
-                <div>
-                    <button><Link to={`/product/${productID}`} className="back-res">Cancel</Link></button>
-                        <div className="row">
-                            <div className="col-1">
-                            <img className= "large" src={product.image} alt=""/>
-                        </div>
-                        <div className="col-2">
-                            <ul>
-                                <li className="pd-name">{product.name}</li>
-                                <li className="pd-rating">
-                                    <Rating rating={product.rating}
-                                    numRev={product.numRev} />
-                                </li>
-                                <li className="pd-price">€{product.price}</li>
-                                <li className="pd-desc">
-                                    Description :
-                                    <p>{product.description}</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="col-3">
-                            <div className="card card-body">
-                                <ul>
-                                    <li>
-                                        <p>Total amount</p>
-                                        <div className="price">€{product.price*qty}</div>
-                                    </li>
-                                    <li>
-                                        <p>Stock</p>
-                                        { product.stock > 10
-                                        ? (<span className="success">In stock</span>)
-                                        : product.stock < 10 && product.stock > 0
-                                        ? (<span className="m-success">Hurry! Few in stock</span>)
-                                        : (<span className="error">Out of stock</span>)
-                                        }
-                                    </li>
+            <div className="form-ip-sec">
+              <label htmlFor="description">Set a description:</label>
+              <input
+                type="text"
+                id="description"
+                placeholder="Enter description"
+                value={product.description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></input>
+            </div>
 
-                                    {
-                                        (product.stock > 0) && (
-                                            <>
-                                            <li>
-                                                <p>Qty</p>
-                                                <div className="qty-select">
-                                                    <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                                                        {
-                                                            [...Array(50).keys()].map((x)=>(
-                                                                <option key={x+1} value={x+1}>{x+1}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </li>
-
-                                            </>
-
-                                        )
-                                    }
-                                    
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )
-            }
-
+            <div>
+              <label />
+              <button className="update-btn" type="submit">
+                Update Product Detail
+              </button>
+            </div>
+          </form>
         </div>
-        
-    )
+      )}
+      {/* <form onSubmit={onSubmit} encType="multipart/form-data">
+        <div className="custom-file mb-4">
+          <input
+            type="file"
+            className="custom-file-input"
+            id="picture"
+            onChange={onChange}
+          />
+          <label className="custom-file-label" htmlFor="picture">
+            {filename}
+          </label>
+        </div>
 
-    
-}
+        <Progress percentage={uploadPercentage} />
 
-export default UpdateProductPage
+        <input
+          type="submit"
+          value="Save"
+          className="btn btn-primary btn-block mt-4"
+        />
+      </form> */}
+    </>
+  );
+};
+
+const Progress = ({ percentage }) => {
+  return (
+    <div className="progress">
+      <div
+        className="progress-bar progress-bar-striped bg-success"
+        role="progressbar"
+        style={{ width: `${percentage}%` }}
+      >
+        {percentage}%
+      </div>
+    </div>
+  );
+};
+
+export default UpdateProductPage;
