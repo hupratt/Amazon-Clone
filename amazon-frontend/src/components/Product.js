@@ -10,10 +10,10 @@ const Product = ({product}) => {
         <Link to={`/product/${product._id}`}>
         <div className="product-card" >
             <div className="product-image">
-                <img src= {product.image} alt=""/>
+                <img src= {`${process.env.REACT_APP_BACKEND_URL}${product.image}`} alt=""/>
             </div>
             <h2>{product.name}</h2>
-            <Rating rating={product.rating} numRev={product.numRev}/>
+            {/* <Rating rating={product.rating} numRev={product.numRev}/> */}
             <p>€{product.price}</p>
         </div>
         </Link>

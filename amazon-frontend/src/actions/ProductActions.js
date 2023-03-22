@@ -17,7 +17,7 @@ export const listProducts = () => async (dispatch) => {
   });
 
   try {
-    const { data } = await axios.get("/api/products");
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/products`);
     // const count = data.length;
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -38,7 +38,7 @@ export const detailsProduct = (productID) => async (dispatch) => {
   });
 
   try {
-    const { data } = await axios.get(`/api/products/${productID}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/products/${productID}`);
 
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
