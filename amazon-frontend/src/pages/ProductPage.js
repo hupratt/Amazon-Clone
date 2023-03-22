@@ -11,29 +11,17 @@ const ProductPage = (props) => {
 
     const dispatch = useDispatch();
     const productID = props.match.params.id;
-    
-
     const productDetails = useSelector((state) => state.productDetails);
     const {loading,error,product} = productDetails;
-
-    // console.log(product);
-
-
     const [qty, setQty] = useState(1);
-
 
     useEffect(() => {
         dispatch(detailsProduct(productID));
     }, [dispatch,productID]);
 
-
-
     const addToCart = () =>{
         props.history.push(`/cart/${productID}?qty=${qty}`)
     }
-
-
-
 
     return (
 

@@ -5,7 +5,7 @@ import Rating from '../components/Rating';
 import "../styles/ProductPage.css"
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { detailsProduct } from '../actions/ProductActions';
+import { detailsProduct, updateArticle } from '../actions/ProductActions';
 
 const UpdateProductPage = (props) => {
 
@@ -25,13 +25,6 @@ const UpdateProductPage = (props) => {
     useEffect(() => {
         dispatch(detailsProduct(productID));
     }, [dispatch,productID]);
-
-
-
-    const addToCart = () =>{
-        props.history.push(`/cart/${productID}?qty=${qty}`)
-    }
-
 
 
 
@@ -95,11 +88,7 @@ const UpdateProductPage = (props) => {
                                                     </select>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <button className="add-to-cart" onClick={addToCart}>
-                                                    Add to cart
-                                                </button>
-                                            </li>
+
                                             </>
 
                                         )

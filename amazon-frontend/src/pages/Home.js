@@ -7,6 +7,9 @@ import Slider from "react-slick";
 import "../styles/Home.css"
 import Product from '../components/Product'
 import { listProducts } from '../actions/ProductActions'
+import banner7 from "../assets/banner7.png"
+import banner8 from "../assets/banner8.jpg"
+import banner6 from "../assets/banner6.png"
 
 const Home = () => {
 
@@ -22,7 +25,7 @@ const Home = () => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        speed: 10000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -76,13 +79,13 @@ const Home = () => {
                 <Slider {...settings}>
 
                     <div className="banners">
-                      <img src="https://m.media-amazon.com/images/S/aplus-media/vc/342b936a-69f1-4e59-89ba-7ddb98c1acda.jpg" alt=""/>
+                      <img src={banner6} alt=""/>
                     </div>
                     <div className="banners">
-                        <img src="https://cdn.shopify.com/s/files/1/1780/7915/files/Thermaltake_Level_20_RGB_Titanium_Gaming_Keyboard_From_The_Peripheral_Store_Banner_01.jpg?v=1598266526" alt=""/>
+                      <img src={banner7} alt=""/>
                     </div>
                     <div className="banners">
-                        <img src="https://cdn.shopify.com/s/files/1/1780/7915/files/Game_Monitor_6a7a1deb-2d61-4307-99ac-f8c5a18d298f.jpg?8000210842524768871" alt=""/>
+                      <img src={banner8} alt=""/>
                     </div>
 
                 </Slider>

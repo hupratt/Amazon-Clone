@@ -1,57 +1,90 @@
 import axios from "../Axios";
-import { 
-    PRODUCT_LIST_REQUEST, 
-    PRODUCT_LIST_FAIL, 
-    PRODUCT_LIST_SUCCESS,
-    PRODUCT_DETAILS_REQUEST, 
-    PRODUCT_DETAILS_FAIL, 
-    PRODUCT_DETAILS_SUCCESS 
-
+import {
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_FAIL,
+  PRODUCT_LIST_SUCCESS,
+  PRODUCT_DETAILS_REQUEST,
+  PRODUCT_DETAILS_FAIL,
+  PRODUCT_DETAILS_SUCCESS,
+  PRODUCT_UPDATE_SUCCESS,
+  PRODUCT_UPDATE_FAIL,
 } from "../constants/ProductConstants";
+import { updateObject } from "./Utility";
 
-export const listProducts = () => async (dispatch) =>{
+export const listProducts = () => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_LIST_REQUEST,
+  });
+
+  try {
+    const { data } = await axios.get("/api/products");
+    // const count = data.length;
     dispatch({
-        type: PRODUCT_LIST_REQUEST 
+      type: PRODUCT_LIST_SUCCESS,
+      payload: data,
     });
-
-    try{
-        const {data} = await axios.get("/api/products");
-        // const count = data.length;
-        dispatch({
-            type: PRODUCT_LIST_SUCCESS,
-            payload: data
-        })
-    }
-    catch(error){
-        dispatch({
-            type: PRODUCT_LIST_FAIL,
-            payload: error.message
-        })
-    }
-}
-
-
-
-export const detailsProduct = (productID) => async (dispatch) =>{
+  } catch (error) {
     dispatch({
-        type: PRODUCT_DETAILS_REQUEST,
-        payload: productID
+      type: PRODUCT_LIST_FAIL,
+      payload: error.message,
     });
+  }
+};
 
-    try{
-        const {data} = await axios.get(`/api/products/${productID}`);
-   
+export const detailsProduct = (productID) => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_DETAILS_REQUEST,
+    payload: productID,
+  });
+
+  try {
+    const { data } = await axios.get(`/api/products/${productID}`);
+
+    dispatch({
+      type: PRODUCT_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.mesaage
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+const updateArticleFailed = (state, action) => {
+  return updateObject(state, {
+    type: PRODUCT_UPDATE_FAIL,
+    error: action.error,
+    loading: false,
+  });
+};
+
+export const updateArticle = (formData, setUploadPercentage, urlendpoint) => {
+  return (dispatch) => {
+    axios
+      .put(urlendpoint, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Token " + localStorage.getItem("token"),
+        },
+        onUploadProgress: (progressEvent) => {
+          setUploadPercentage(
+            parseInt(
+              Math.round((progressEvent.loaded * 100) / progressEvent.total)
+            )
+          );
+        },
+      })
+      .then(
         dispatch({
-            type: PRODUCT_DETAILS_SUCCESS,
-            payload:data
+          type: PRODUCT_UPDATE_SUCCESS,
+          success: true,
         })
-    }
-    catch(error){
-        dispatch({
-            type: PRODUCT_DETAILS_FAIL,
-            payload: error.response && error.response.data.mesaage
-            ? error.response.data.message
-            : error.message,
-        });
-    }
+      )
+      .catch((err) => dispatch(updateArticleFailed(err.response.data)));
+  };
 };
