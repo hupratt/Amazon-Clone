@@ -17,7 +17,9 @@ export const listProducts = () => async (dispatch) => {
   });
 
   try {
-    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/products`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/products`
+    );
     // const count = data.length;
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -38,7 +40,9 @@ export const detailsProduct = (productID) => async (dispatch) => {
   });
 
   try {
-    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/products/${productID}`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/api/products/${productID}`
+    );
 
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
@@ -63,28 +67,40 @@ const updateArticleFailed = (state, action) => {
   });
 };
 
-export const updateArticle = (formData, setUploadPercentage, urlendpoint) => {
-  return (dispatch) => {
-    axios
-      .put(urlendpoint, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: "Token " + localStorage.getItem("token"),
-        },
-        onUploadProgress: (progressEvent) => {
-          setUploadPercentage(
-            parseInt(
-              Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            )
-          );
-        },
-      })
-      .then(
-        dispatch({
-          type: PRODUCT_UPDATE_SUCCESS,
-          success: true,
+export const updateArticle =
+  (formData, setUploadPercentage, urlendpoint) =>
+  async (dispatch, getState) => {
+    // export const updateArticle = (formData, setUploadPercentage, urlendpoint) => {
+    // return (dispatch) => {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    if (userInfo.isAdmin) {
+      // console.log(userInfo);
+      axios
+        .put(urlendpoint, formData, {
+          headers: { Authorization: `Bearer ${userInfo?.token}` },
+          onUploadProgress: (progressEvent) => {
+            setUploadPercentage(
+              parseInt(
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              )
+            );
+          },
         })
-      )
-      .catch((err) => dispatch(updateArticleFailed(err.response.data)));
+        .then(
+          dispatch({
+            type: PRODUCT_UPDATE_SUCCESS,
+            success: true,
+          })
+        )
+        .catch((err) => dispatch(updateArticleFailed(err.response.data)));
+    } else {
+      dispatch({
+        type: PRODUCT_UPDATE_FAIL,
+        success: false,
+        message: "Invalid admin token",
+      });
+    }
   };
-};
+// };

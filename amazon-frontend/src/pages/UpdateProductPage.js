@@ -21,6 +21,7 @@ const UpdateProductPage = (props) => {
     dispatch(detailsProduct(productID));
   }, [dispatch, productID]);
 
+
   const onChange = (e) => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
@@ -28,34 +29,14 @@ const UpdateProductPage = (props) => {
   // console.log(product);
   const onSubmit = (e) => {
     e.preventDefault();
-    if (file !== "" && file !== undefined) {
-      const formData = new FormData();
-      formData.append("image", file);
-      formData.append(
-        "alt",
-        `Book cover of ${productDetails.titre} from ${productDetails.auteur_nom}`
-      );
-      updateArticle(
-        formData,
-        setUploadPercentage,
-        `/bookimages/${productDetails.pictureid}/update/`
-      );
-    }
-    const formData = new FormData();
-    for (var key in productDetails) {
-      if (
-        productDetails[key] !== undefined &&
-        productDetails[key] !== null &&
-        key !== "picture"
-      ) {
-        formData.append(key, productDetails[key]);
-      }
-    }
-    updateArticle(
+    const formData={name, price, stock, description}
+
+    dispatch(updateArticle(
       formData,
       setUploadPercentage,
-      `/books/${productDetails.id}/update/`
+      `${process.env.REACT_APP_BACKEND_URL}/api/products/update/${productID}`)
     );
+    console.log(`${process.env.REACT_APP_BACKEND_URL}/api/products/update/${productID}`)
   };
 
   const userSignin = useSelector((state) => state.userSignin);
@@ -64,6 +45,14 @@ const UpdateProductPage = (props) => {
   const [price, setPrice] = useState(1);
   const [stock, setStock] = useState(1);
   const [description, setDescription] = useState("");
+  useEffect(() => {
+    if(product && product.name){
+      setName(product.name)
+      setPrice(product.price)
+      setStock(product.setStock)
+      setDescription(product.setDescription)
+    }
+  }, [product]);
 
   return (
     <>
@@ -87,7 +76,7 @@ const UpdateProductPage = (props) => {
                 type="text"
                 id="name"
                 placeholder="Enter name"
-                value={product.name}
+                value={name||""}
                 onChange={(e) => setName(e.target.value)}
               ></input>
             </div>
@@ -98,7 +87,7 @@ const UpdateProductPage = (props) => {
                 type="number"
                 id="price"
                 placeholder="Enter a unit price"
-                value={product.price}
+                value={price||0}
                 onChange={(e) => setPrice(e.target.value)}
               ></input>
             </div>
@@ -109,7 +98,7 @@ const UpdateProductPage = (props) => {
                 type="number"
                 id="stock"
                 placeholder="Enter available stock"
-                value={product.stock}
+                value={stock||0}
                 onChange={(e) => setStock(e.target.value)}
               ></input>
             </div>
@@ -120,7 +109,7 @@ const UpdateProductPage = (props) => {
                 type="text"
                 id="description"
                 placeholder="Enter description"
-                value={product.description}
+                value={description||""}
                 onChange={(e) => setDescription(e.target.value)}
               ></input>
             </div>

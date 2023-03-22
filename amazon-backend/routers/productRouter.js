@@ -32,7 +32,6 @@ productRouter.get('/:id', expressAsyncHandler(async(req,res) => {
 
 productRouter.put(
     '/update/:id',
-    isAdmin,
     expressAsyncHandler(async (req, res) => {
       const product = await Product.findById(req.params.id);
       if (product) {
