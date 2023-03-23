@@ -194,6 +194,7 @@ header .nav-links li {
     }
 
     .category-container{
+      /* min-width: 900px; */
       margin-top: 16px;
     }
 

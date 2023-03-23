@@ -1,13 +1,19 @@
+body{
+  /* min-width: 900px; */
+}
+.container,
 .home-page-container{
     max-width: 1600px;
     margin: auto;
+    /* min-width: 900px; */
 }
 
 .banner-container{
     margin-bottom: 40px;
+    min-height: 200px;
 }
 .banners{
-    height: 26vw;
+    height: 500px;
 }
 
 .banners img{
