@@ -21,10 +21,12 @@ const FileForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", file);
     // var upload = multer(fileUploadConfig).single('file');
     if (file !== "" && file !== undefined) {
       dispatch(updateArticlePicture(
-        file,
+        formData,
         setUploadPercentage,
         `${process.env.REACT_APP_BACKEND_URL}/api/upload/`
       ));
@@ -38,6 +40,7 @@ const FileForm = (props) => {
         <div className="custom-file mb-4">
           <input
             type="file"
+            name="uploaded_file"
             className="custom-file-input"
             id="picture"
             onChange={onChange}

@@ -30,7 +30,8 @@ import expressAsyncHandler from "express-async-handler";
 // })
 
 const imageUploadController = expressAsyncHandler(async (req, res) => {
-  var upload = multer(fileUploadConfig).single("file");
+  var upload = multer(fileUploadConfig).single("image");
+  console.log(upload)
   upload(req, res, async function (uploadError) {
     if (uploadError) {
       var errorMessage;
