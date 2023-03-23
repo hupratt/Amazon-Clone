@@ -34,10 +34,8 @@ const UpdateProductPage = (props) => {
 
     dispatch(updateArticle(
       formData,
-      setUploadPercentage,
       `${process.env.REACT_APP_BACKEND_URL}/api/products/update/${productID}`)
     );
-    console.log(`${process.env.REACT_APP_BACKEND_URL}/api/products/update/${productID}`)
   };
 
   const userSignin = useSelector((state) => state.userSignin);

@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import userRouter from './routers/userRouter.js'
 import productRouter from './routers/productRouter.js'
+import imageRouter from './routers/imageRouter.js'
 import dotenv from 'dotenv'
 import orderRouter from './routers/orderRouter.js'
 import path from 'path';
@@ -34,6 +35,7 @@ app.use(cors());
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/upload", imageRouter);
 app.use("/api/orders", orderRouter);
 app.get('/api/config/paypal', (req,res)=>{
     res.send(process.env.REACT_APP_PAYPAL_CLIENT_ID || 'sb');

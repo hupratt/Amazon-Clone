@@ -68,7 +68,7 @@ const updateArticleFailed = (state, action) => {
 };
 
 export const updateArticle =
-  (formData, setUploadPercentage, urlendpoint) =>
+  (formData, urlendpoint) =>
   async (dispatch, getState) => {
     // export const updateArticle = (formData, setUploadPercentage, urlendpoint) => {
     // return (dispatch) => {
@@ -76,9 +76,39 @@ export const updateArticle =
       userSignin: { userInfo },
     } = getState();
     if (userInfo.isAdmin) {
-      // console.log(userInfo);
+      console.log(userInfo);
       axios
         .put(urlendpoint, formData, {
+          headers: { Authorization: `Bearer ${userInfo?.token}` }
+        })
+        .then(
+          dispatch({
+            type: PRODUCT_UPDATE_SUCCESS,
+            success: true,
+          })
+        )
+        .catch((err) => dispatch(updateArticleFailed(err.response.data)));
+    } else {
+      dispatch({
+        type: PRODUCT_UPDATE_FAIL,
+        success: false,
+        message: "Invalid admin token",
+      });
+    }
+  };
+export const updateArticlePicture =
+  (formData, setUploadPercentage, urlendpoint) =>
+  (dispatch, getState) => {
+    console.log('=== urlendpoint ProductActions.js [102] ===');
+    // export const updateArticle = (formData, setUploadPercentage, urlendpoint) => {
+    // return (dispatch) => {
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    if (userInfo.isAdmin) {
+      console.log(userInfo);
+      axios
+        .post(urlendpoint, formData, {
           headers: { Authorization: `Bearer ${userInfo?.token}` },
           onUploadProgress: (progressEvent) => {
             setUploadPercentage(

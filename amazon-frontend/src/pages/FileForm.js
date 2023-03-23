@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { detailsProduct } from "../actions/ProductActions";
+import { updateArticlePicture, updateArticle } from "../actions/ProductActions";
 import { useDispatch, useSelector } from "react-redux";
-
 
 const FileForm = (props) => {
   const [file, setFile] = useState("");
@@ -22,20 +21,14 @@ const FileForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // var upload = multer(fileUploadConfig).single('file');
     if (file !== "" && file !== undefined) {
-      const formData = new FormData();
-      formData.append("image", file);
-      formData.append(
-        "alt",
-        `Book cover o`
-      );
-      // updateBook(
-      //   formData,
-      //   setUploadPercentage,
-      //   `${endpoint}/bookimages/${book.pictureid}/update/`,
-      //   history,
-      //   book
-      // );
+      dispatch(updateArticlePicture(
+        file,
+        setUploadPercentage,
+        `${process.env.REACT_APP_BACKEND_URL}/api/upload/`
+      ));
+      console.log('=== here FileForm.js [40] ===');
     }
   };
 
