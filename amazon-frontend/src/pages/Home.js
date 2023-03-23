@@ -7,9 +7,9 @@ import Slider from "react-slick";
 import "../styles/Home.css"
 import Product from '../components/Product'
 import { listProducts } from '../actions/ProductActions'
-import banner7 from "../assets/banner7.png"
-import banner8 from "../assets/banner8.jpg"
-import banner6 from "../assets/banner6.png"
+import banner7 from "../assets/banner7 4800.jpg"
+import banner8 from "../assets/banner8 4800.jpg"
+import banner6 from "../assets/banner6 4800.jpg"
 
 const Home = () => {
 

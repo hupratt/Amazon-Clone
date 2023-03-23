@@ -49,4 +49,4 @@ if (process.env.NODE_ENV === 'production') {
 
 // Listening to  server
 
-app.listen(port,()=>console.log(`Listening on local host:${port}`))
+app.listen(port,()=>console.log(`Listening on localhost:${port}`))
