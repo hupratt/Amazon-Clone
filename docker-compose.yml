@@ -40,7 +40,7 @@ services:
       - amazon-network
     # environment:
     #   DEBUG: 'true'
-  nginx:
+  amazon-nginx:
     restart: always
     build: ./nginx/
     ports:
