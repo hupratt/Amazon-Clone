@@ -7,7 +7,7 @@ networks:
     ipam:
      driver: default
      config:
-       - subnet: 172.190.4.0/26
+       - subnet: 172.190.5.0/26
     driver_opts:
       com.docker.network.bridge.name: br_amazon
 
@@ -18,8 +18,8 @@ services:
     ports:
       - "8966:8966"
     volumes:
-      - ./amazon-backend:/amazon-backend
-      - ./amazon-backend/node_modules:/amazon-backend/node_modules
+      - ./amazon-backend:/hdd/Dev/Amazon-Clone/amazon-backend
+      - ./amazon-backend/node_modules:/hdd/Dev/Amazon-Clone/amazon-backend/node_modules
     env_file: 
       - ./amazon-backend/.env
     networks:
@@ -32,8 +32,8 @@ services:
     ports:
       - "8965:8965"
     volumes:
-      - ./amazon-frontend:/amazon-frontend
-      - ./amazon-frontend/node_modules:/amazon-frontend/node_modules
+      - ./amazon-frontend:/hdd/Dev/Amazon-Clone/amazon-frontend
+      - ./amazon-frontend/node_modules:/hdd/Dev/Amazon-Clone/amazon-frontend/node_modules
     env_file: 
       - ./amazon-frontend/.env
     networks:
