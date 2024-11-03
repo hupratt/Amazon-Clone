@@ -48,4 +48,4 @@ services:
     networks:
       - amazon-network
     volumes:
-      - ./public:/hdd/Dev/Amazon-Clone/amazon-backend/public
+      - ./amazon-backend/public:/hdd/Dev/Amazon-Clone/amazon-backend/public
