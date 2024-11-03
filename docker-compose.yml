@@ -40,3 +40,12 @@ services:
       - amazon-network
     # environment:
     #   DEBUG: 'true'
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "9086:80"
+    networks:
+      - amazon-network
+    volumes:
+      - ./public:/hdd/Dev/Amazon-Clone/amazon-backend/public
