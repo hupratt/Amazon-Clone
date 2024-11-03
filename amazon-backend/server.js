@@ -31,8 +31,8 @@ mongoose.connect(connection_url,{
 app.use(express.json());
 
 const corsOption = {
-    credentials: true,
-    origin: ['http://localhost:8966', 'http://amazon-backend:8966', 'http://172.190.4.1:8966', 'http://127.0.0.1:8966','http://localhost:8965', 'http://amazon-backend:8965', 'http://172.190.4.1:8965', 'http://127.0.0.1:8965']
+    optionsSuccessStatus: 200,
+    origin: ['https://retroapi.thekor.eu', 'https://retro.thekor.eu', 'http://localhost:8966', 'http://amazon-backend:8966', 'http://172.190.4.1:8966', 'http://127.0.0.1:8966','http://localhost:8965', 'http://amazon-backend:8965', 'http://172.190.4.1:8965', 'http://127.0.0.1:8965']
 }
 
 app.use(cors(corsOption));
