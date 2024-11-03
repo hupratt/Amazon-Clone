@@ -1,0 +1,42 @@
+volumes:
+  pg_data_youtubeclone:
+
+networks:
+  amazon-network:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.190.4.0/26
+    driver_opts:
+      com.docker.network.bridge.name: br_amazon
+
+services:
+  amazon-backend:
+    build: ./amazon-backend
+    restart: always
+    ports:
+      - "8966:8966"
+    volumes:
+      - ./amazon-backend:/amazon-backend
+      - ./amazon-backend/node_modules:/amazon-backend/node_modules
+    env_file: 
+      - ./amazon-backend/.env
+    networks:
+      - amazon-network
+    # environment:
+    #   DEBUG: 'true'
+  amazon-frontend:
+    build: ./amazon-frontend
+    restart: always
+    ports:
+      - "8965:8965"
+    volumes:
+      - ./amazon-frontend:/amazon-frontend
+      - ./amazon-frontend/node_modules:/amazon-frontend/node_modules
+    env_file: 
+      - ./amazon-frontend/.env
+    networks:
+      - amazon-network
+    # environment:
+    #   DEBUG: 'true'

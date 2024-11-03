@@ -29,8 +29,13 @@ mongoose.connect(connection_url,{
 
 
 app.use(express.json());
-app.use(cors());
 
+const corsOption = {
+    credentials: true,
+    origin: ['http://localhost:8966', 'http://amazon-backend:8966', 'http://172.190.4.1:8966', 'http://127.0.0.1:8966','http://localhost:8965', 'http://amazon-backend:8965', 'http://172.190.4.1:8965', 'http://127.0.0.1:8965']
+}
+
+app.use(cors(corsOption));
 
 
 app.use("/api/users", userRouter);
